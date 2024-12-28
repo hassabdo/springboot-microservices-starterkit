@@ -4,7 +4,6 @@ import java.util.Optional;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -14,7 +13,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import com.microservices.userservice.security.SessionUser;
 
 @Configuration
-@PropertySource({ "classpath:application.properties" })
 @EnableJpaAuditing
 public class AuditingConfig {
 

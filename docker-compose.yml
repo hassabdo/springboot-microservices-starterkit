@@ -1,0 +1,68 @@
+version: '3.7'
+
+services:
+  naming-server:
+    build:
+      context: ./naming-server
+    ports:
+      - "8761:8761"
+    volumes:
+      - ./naming-server/src/main/resources/application-docker.properties:/app/application-docker.properties
+    environment:
+      - SPRING_PROFILES_ACTIVE=default,dev,docker
+    networks:
+      - microservices-network
+    mem_limit: 512m  # Memory limit
+    cpu_quota: 0.5   # CPU limit
+
+  api-gateway:
+    build:
+      context: ./api-gateway
+    ports:
+      - "8765:8765"
+    volumes:
+      - ./api-gateway/src/main/resources/application-docker.properties:/app/application-docker.properties
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev,default,docker
+    depends_on:
+      - naming-server
+    networks:
+      - microservices-network
+    mem_limit: 512m  # Memory limit
+    cpu_quota: 0.5   # CPU limit
+
+  template-service:
+    build:
+      context: ./template-service
+    ports:
+      - "8100:8100"
+    volumes:
+      - ./template-service/src/main/resources/application-docker.properties:/app/application-docker.properties
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev,default,docker
+    depends_on:
+      - naming-server
+    networks:
+      - microservices-network
+    mem_limit: 512m  # Memory limit
+    cpu_quota: 0.5   # CPU limit
+
+  user-service:
+    build:
+      context: ./user-service
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./user-service/src/main/resources/application-docker.properties:/app/application-docker.properties
+    environment:
+      - SPRING_PROFILES_ACTIVE=default,dev,docker
+    depends_on:
+      - naming-server
+    networks:
+      - microservices-network
+    mem_limit: 512m  # Memory limit
+    cpu_quota: 0.5   # CPU limit
+
+networks:
+  microservices-network:
+    driver: bridge

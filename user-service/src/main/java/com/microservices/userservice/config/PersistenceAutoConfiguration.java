@@ -21,7 +21,6 @@ import org.springframework.transaction.PlatformTransactionManager;
 import jakarta.persistence.EntityManagerFactory;
 
 @Configuration
-@PropertySource({ "classpath:application-${spring.profiles.active}.properties" })
 @EnableJpaRepositories(basePackages = "com.microservices.userservice.repository", entityManagerFactoryRef = "entityManager", transactionManagerRef = "transactionManager")
 public class PersistenceAutoConfiguration {
 

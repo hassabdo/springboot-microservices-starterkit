@@ -21,8 +21,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import jakarta.persistence.EntityManagerFactory;
 
 @Configuration
-@PropertySource({ "classpath:application-${spring.profiles.active}.properties" })
-@EnableJpaRepositories(basePackages = "mis.microservices.canvaservice.repository", entityManagerFactoryRef = "misEntityManager", transactionManagerRef = "misTransactionManager")
+@EnableJpaRepositories(basePackages = "com.example.canvaservice.repository", entityManagerFactoryRef = "misEntityManager", transactionManagerRef = "misTransactionManager")
 public class PersistenceMISAutoConfiguration {
 
 	@Value("${spring.datasource.jpa.hibernate.ddl-auto}")
@@ -41,7 +40,7 @@ public class PersistenceMISAutoConfiguration {
 	public LocalContainerEntityManagerFactoryBean misEntityManager(final EntityManagerFactoryBuilder builder,
 			final @Qualifier("canva-db") DataSource dataSource) {
 
-		return builder.dataSource(dataSource).packages("mis.microservices.canvaservice.model").persistenceUnit("canva-db")
+		return builder.dataSource(dataSource).packages("com.example.canvaservice.model").persistenceUnit("canva-db")
 				.properties(singletonMap("hibernate.hbm2ddl.auto", ddlAuto))
 				.properties(singletonMap("hibernate.dialect", "org.hibernate.dialect.MySQLDialect"))
 

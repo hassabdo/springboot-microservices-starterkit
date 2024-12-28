@@ -14,7 +14,7 @@ import jakarta.annotation.PostConstruct;
 
 @SpringBootApplication
 @EntityScan(basePackageClasses = { UserServiceApplication.class, Jsr310JpaConverters.class })
-//@EnableJpaRepositories(basePackages = "mis.microservices")
+//@EnableJpaRepositories(basePackages = "com.example")
 public class UserServiceApplication extends SpringBootServletInitializer {
 
 	@PostConstruct

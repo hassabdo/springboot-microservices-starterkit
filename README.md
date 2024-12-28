@@ -38,6 +38,16 @@ To get started with using this starter kit, follow these steps:
 
 Contributions are welcome! If you encounter any issues or have ideas for improvements, please open an issue on the GitHub repository. Pull requests are also encouraged.
 
+## 📂 Project Structure
+
+```plaintext
+.
+├── api-gateway                  # Zuul API Gateway for routing and filtering requests
+├── naming-server                # Eureka Naming Server for service discovery
+├── template-service             # Template service that can be easily replicated and extended
+├── user-service                 # JWT authentication and token validation via the gateway
+└── README.md                    # Project documentation (this file)
+
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
